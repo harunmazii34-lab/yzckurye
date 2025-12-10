@@ -1,256 +1,190 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YZC Kurye</title>
 
     <style>
         body {
             margin: 0;
-            background: #111;
-            color: white;
             font-family: Arial, sans-serif;
+            background: #fff;
+            color: #222;
         }
 
-        header {
-            background: #000;
-            padding: 20px 30px;
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.75);
+            padding: 12px 40px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            border-bottom: 3px solid #f1c40f;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(6px);
         }
 
-        .logo {
-            font-size: 26px;
-            color: #f1c40f;
+        .navbar h2 {
+            color: #ffc400;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 25px;
+            text-decoration: none;
             font-weight: bold;
-            animation: slideIn 1s ease-out;
         }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-30px); }
-            to   { opacity: 1; transform: translateX(0); }
+        .navbar a:hover {
+            color: #ffc400;
         }
 
         /* HERO */
         .hero {
-            height: 70vh;
+            height: 100vh;
             background: url('hero.jpg') center/cover no-repeat;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            text-align: center;
+            padding-left: 60px;
         }
 
-        .hero h2 {
-            background: rgba(0,0,0,0.6);
-            padding: 15px 25px;
-            border: 2px solid #f1c40f;
-            border-radius: 10px;
-            animation: fadeIn 1.5s ease-out, glow 2s infinite alternate;
+        .hero h1 {
+            font-size: 55px;
+            width: 500px;
+            color: white;
+            text-shadow: 0 0 20px black;
+            animation: fadeInUp 1.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .hero p {
+            font-size: 20px;
+            color: #ffd500;
+            margin-top: -10px;
+            text-shadow: 0 0 10px black;
+            animation: fadeInUp 2s ease;
         }
 
-        @keyframes glow {
-            from { box-shadow: 0 0 5px #f1c40f; }
-            to   { box-shadow: 0 0 18px #f1c40f; }
-        }
-
-        /* BÖLÜM */
-        .section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        h3 {
-            color: #f1c40f;
-            font-size: 28px;
-        }
-
-        /* HİZMET KUTULARI */
-        .services {
-            max-width: 900px;
-            margin: auto;
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-
-        .service-box {
-            background: #222;
-            padding: 20px;
-            border: 2px solid #f1c40f;
-            border-radius: 10px;
+        .hero button {
+            width: 220px;
+            padding: 15px;
+            margin-top: 20px;
+            background: #ffc400;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
             cursor: pointer;
-            transition: 0.25s;
-            transform: scale(1);
-            font-weight: bold;
+            animation: fadeInUp 2.2s ease;
         }
 
-        .service-box:hover {
-            background: #333;
-            transform: scale(1.06);
-            box-shadow: 0 0 12px #f1c40f;
+        .hero button:hover {
+            background: #ffdd55;
         }
 
-        /* DETAY - ANİMASYONLU */
-        .detail-box {
-            max-width: 750px;
-            margin: 20px auto;
-            background: #222;
-            padding: 20px;
-            border: 2px solid #f1c40f;
-            border-radius: 10px;
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.4s;
-        }
-
-        .detail-box.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .address-box {
-            background: #222;
-            padding: 20px;
-            border: 2px solid #f1c40f;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        .btn {
-            background: #f1c40f;
-            color: #000;
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin: 10px;
-            display: inline-block;
-            font-weight: bold;
-        }
-
-        footer {
-            background: #000;
-            padding: 20px;
+        /* HİZMETLER */
+        .bolum {
+            padding: 60px 40px;
             text-align: center;
-            border-top: 2px solid #f1c40f;
+        }
+
+        .bolum h2 {
+            font-size: 32px;
+            color: #111;
+        }
+
+        .hizmetler {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hizmet {
+            width: 280px;
+            background: #f7f7f7;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .hizmet:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 0 25px rgba(0,0,0,0.15);
+        }
+
+        .hizmet h3 {
+            color: #ffc400;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #111;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
-
-    <script>
-        function showDetail(id) {
-            document.querySelectorAll('.detail-box').forEach(box => {
-                box.classList.remove('show');
-                box.style.display = "none";
-            });
-
-            let box = document.getElementById(id);
-            box.style.display = "block";
-
-            setTimeout(() => {
-                box.classList.add('show');
-            }, 10);
-
-            window.scrollTo({
-                top: box.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
-    </script>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">YZC • KURYE</div>
-</header>
-
-<div class="hero">
-    <h2>Hızlı – Güvenilir – 7/24 Moto Kurye Hizmeti</h2>
-</div>
-
-<div class="section">
-    <h3>Hizmetlerimiz</h3>
-
-    <div class="services">
-        <div class="service-box" onclick="showDetail('express')">Express Kurye</div>
-        <div class="service-box" onclick="showDetail('acil')">Acil Kurye</div>
-        <div class="service-box" onclick="showDetail('gece')">Gece Kurye</div>
-        <div class="service-box" onclick="showDetail('vip')">VIP Kurye</div>
-        <div class="service-box" onclick="showDetail('sehirici')">Şehir İçi Kurye</div>
-        <div class="service-box" onclick="showDetail('sehirlerarasi')">Şehirler Arası Kurye</div>
-    </div>
-</div>
-
-<!-- DETAYLAR -->
-<div id="express" class="detail-box">
-    <h3>Express Kurye</h3>
-    En hızlı teslimat türümüzdür. Yoğun saatlerde bile 30–60 dakika içinde teslimat yapılır.
-</div>
-
-<div id="acil" class="detail-box">
-    <h3>Acil Kurye</h3>
-    7/24 acil durumlar için özel hizmet. Trafik yoğunluğuna göre en hızlı güzergâh seçilir.
-</div>
-
-<div id="gece" class="detail-box">
-    <h3>Gece Kurye</h3>
-    20:00 – 06:00 arasında gece teslimatı.
-</div>
-
-<div id="vip" class="detail-box">
-    <h3>VIP Kurye</h3>
-    Özel paket – tekli teslimat – gizlilik.
-</div>
-
-<div id="sehirici" class="detail-box">
-    <h3>Şehir İçi Kurye</h3>
-    İstanbul’un tüm ilçelerine hızlı teslimat.
-</div>
-
-<div id="sehirlerarasi" class="detail-box">
-    <h3>Şehirler Arası Kurye</h3>
-    Türkiye’nin her şehrine aynı gün veya ertesi gün teslimat.
-</div>
-
-<!-- ADRES & HARİTA -->
-<div class="section">
-    <h3>Adres</h3>
-
-    <div class="address-box">
-        İstanbul / Avrupa Yakası  
-        <br>
-        Şişli – Kağıthane – Beşiktaş – Levent – Maslak ve çevresi.
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h2>YZC Kurye</h2>
+        <div>
+            <a href="#hizmetler">Hizmetler</a>
+            <a href="#iletisim">İletişim</a>
+        </div>
     </div>
 
-    <h3>Konum</h3>
+    <!-- HERO -->
+    <div class="hero">
+        <h1>İstanbul’un En Hızlı Kurye Hizmeti</h1>
+        <p>7/24 Ekspres – Acil – Moto – Şehir içi – Şehirler Arası</p>
+        <button>Hemen Ara: 0555 555 55 55</button>
+    </div>
 
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96355.2681678543!2d28.9343925!3d41.0766018"
-        width="90%" 
-        height="300" 
-        style="border:2px solid #f1c40f; border-radius:10px;"
-        loading="lazy">
-    </iframe>
+    <!-- HİZMETLER -->
+    <div id="hizmetler" class="bolum">
+        <h2>Hizmetlerimiz</h2>
 
-    <br><br>
-    <a class="btn" href="tel:5555555555">📞 Ara: 555 555 5555</a>
-    <a class="btn" href="https://wa.me/905555555555" target="_blank">💬 WhatsApp</a>
-</div>
+        <div class="hizmetler">
+            <div class="hizmet">
+                <h3>Acil Kurye</h3>
+                <p>Hızlı teslimat garantili adresten adrese özel kurye.</p>
+            </div>
 
-<footer>
-    © 2025 YZC Kurye – Tüm Hakları Saklıdır.
-</footer>
+            <div class="hizmet">
+                <h3>Ekspres Kurye</h3>
+                <p>30-90 dakika arası ultra hızlı kurye hizmeti.</p>
+            </div>
+
+            <div class="hizmet">
+                <h3>Şehirler Arası Kurye</h3>
+                <p>Türkiye genelinde güvenli özel teslimat.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- İLETİŞİM -->
+    <div id="iletisim" class="footer">
+        <h2>İletişim</h2>
+        <p>Telefon: 0555 555 55 55</p>
+        <p>Mail: info@yzckurye.com</p>
+        <p>Adres: İstanbul / Türkiye</p>
+    </div>
 
 </body>
 </html>
